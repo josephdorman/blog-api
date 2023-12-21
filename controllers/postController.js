@@ -47,6 +47,43 @@ exports.get_post_comment = asyncHandler(async (req, res, next) => {
   }
 });
 
+// Create a new comment for post
+exports.create_comment = [
+  // Validate and sanitize fields
+  body("user", "User must not be empty.").trim().isLength({ min: 1 }).escape(),
+  body("comment", "Comment must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      // Find post by id
+      const post = await Post.findById(req.params.id);
+      const comment = new Comment({
+        user: req.body.user,
+        comment: req.body.comment,
+        postId: post._id,
+      });
+      // Save comment to post
+      post.comments.push(comment);
+      comment.save();
+      post.save();
+      res.json({
+        message: "Comment created successfully",
+      });
+    } catch (err) {
+      next(err);
+    }
+  }),
+];
+
 // Create a new post
 exports.create_post = [
   // Validate and sanitize fields
