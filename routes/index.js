@@ -17,6 +17,8 @@ router.get("/post/:id", post_controller.get_post);
 
 router.get("/posts", post_controller.get_posts);
 
+router.post("/post/create", post_controller.create_post);
+
 /// COMMENT ROUTES ///
 
 router.get("/comment/:id", comment_controller.get_comment);
