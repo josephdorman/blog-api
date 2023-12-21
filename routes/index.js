@@ -15,11 +15,11 @@ router.get("/", function (req, res, next) {
 
 router.get("/post/:id", post_controller.get_post);
 
-router.get("/post/:id/comments", post_controller.get_post_comments);
-
 router.get("/post/:id/comment/:commentId", post_controller.get_post_comment);
 
 router.post("/post/create", post_controller.create_post);
+
+router.get("/post/:id/comments", post_controller.get_post_comments);
 
 router.get("/posts", post_controller.get_posts);
 
