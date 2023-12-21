@@ -15,6 +15,8 @@ router.get("/", function (req, res, next) {
 
 router.get("/post/:id", post_controller.get_post);
 
+router.delete("/post/:id/delete", post_controller.delete_post);
+
 router.get("/post/:id/comment/:commentId", post_controller.get_post_comment);
 
 router.post("/post/:id/comment/create", post_controller.create_comment);

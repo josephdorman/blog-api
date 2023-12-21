@@ -120,3 +120,17 @@ exports.create_post = [
     }
   }),
 ];
+
+exports.delete_post = asyncHandler(async (req, res, next) => {
+  try {
+    const post = await Post.findByIdAndDelete(req.params.id).populate(
+      "comments"
+    );
+    const comments = await Comment.deleteMany({ postId: req.params.id });
+    res.json({
+      msg: "Post deleted successfully",
+    });
+  } catch (err) {
+    next(err);
+  }
+});
