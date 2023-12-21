@@ -29,6 +29,8 @@ router.get("/posts", post_controller.get_posts);
 
 router.get("/comment/:id", comment_controller.get_comment);
 
+router.delete("/comment/:id/delete", comment_controller.delete_comment);
+
 router.get("/comments", comment_controller.get_comments);
 
 /// AUTHOR ROUTES ///
