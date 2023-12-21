@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 // Require controller modules.
-const authorController = require("../controllers/authorController");
-const postController = require("../controllers/postController");
-const commentController = require("../controllers/commentController");
+const author_controller = require("../controllers/authorController");
+const post_controller = require("../controllers/postController");
+const comment_controller = require("../controllers/commentController");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
