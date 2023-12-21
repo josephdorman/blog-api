@@ -17,4 +17,10 @@ router.get("/post/:id", post_controller.get_post);
 
 router.get("/posts", post_controller.get_posts);
 
+/// COMMENT ROUTES ///
+
+router.get("/comment/:id", comment_controller.get_comment);
+
+router.get("/comments", comment_controller.get_comments);
+
 module.exports = router;
