@@ -17,6 +17,10 @@ router.get("/post/:id", post_controller.get_post);
 
 router.put("/post/:id/update", post_controller.update_post);
 
+router.put("/post/:id/publish", post_controller.publish_post);
+
+router.put("/post/:id/unpublish", post_controller.unpublish_post);
+
 router.delete("/post/:id/delete", post_controller.delete_post);
 
 router.get("/post/:id/comment/:commentId", post_controller.get_post_comment);

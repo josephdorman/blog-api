@@ -168,3 +168,31 @@ exports.update_post = [
     }
   }),
 ];
+
+exports.publish_post = asyncHandler(async (req, res, next) => {
+  try {
+    const post = await Post.findByIdAndUpdate(req.params.id, {
+      published: true,
+    });
+    post.save();
+    res.json({
+      msg: "Post published successfully",
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+exports.unpublish_post = asyncHandler(async (req, res, next) => {
+  try {
+    const post = await Post.findByIdAndUpdate(req.params.id, {
+      published: false,
+    });
+    post.save();
+    res.json({
+      msg: "Post unpublished successfully",
+    });
+  } catch (err) {
+    next(err);
+  }
+});
