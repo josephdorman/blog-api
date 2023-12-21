@@ -34,6 +34,19 @@ exports.get_post_comments = asyncHandler(async (req, res, next) => {
   }
 });
 
+// Return specific comment for a specific post
+exports.get_post_comment = asyncHandler(async (req, res, next) => {
+  try {
+    const comment = await Comment.find({
+      postId: req.params.id,
+      _id: req.params.commentId,
+    });
+    res.json(comment);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // Create a new post
 exports.create_post = [
   // Validate and sanitize fields
