@@ -11,4 +11,4 @@ const PostSchema = new Schema({
   published: { type: Boolean, default: false, required: true },
 });
 
-modules.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("Post", PostSchema);
