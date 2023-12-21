@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Author = require("../models/author");
+const Comment = require("../models/comment");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
@@ -18,6 +19,17 @@ exports.get_post = asyncHandler(async (req, res, next) => {
   try {
     const post = await Post.find({ _id: req.params.id });
     res.json(post);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Return all comments for a specific post
+exports.get_post_comments = asyncHandler(async (req, res, next) => {
+  try {
+    console.log(req.params.id);
+    const comments = await Comment.find({ postId: req.params.id });
+    res.json(comments);
   } catch (err) {
     next(err);
   }
