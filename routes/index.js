@@ -23,4 +23,10 @@ router.get("/comment/:id", comment_controller.get_comment);
 
 router.get("/comments", comment_controller.get_comments);
 
+/// AUTHOR ROUTES ///
+
+router.get("/author/:id", author_controller.get_author);
+
+router.get("/authors", author_controller.get_authors);
+
 module.exports = router;
