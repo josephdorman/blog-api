@@ -134,3 +134,37 @@ exports.delete_post = asyncHandler(async (req, res, next) => {
     next(err);
   }
 });
+
+// Update specific post
+exports.update_post = [
+  // Validate and sanitize fields
+  body("title", "Title must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("content", "Content must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const post = await Post.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        content: req.body.content,
+        published: req.body.published,
+      });
+      res.json({
+        msg: "Post updated successfully",
+      });
+    } catch (err) {
+      next(err);
+    }
+  }),
+];
