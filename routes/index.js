@@ -11,4 +11,10 @@ router.get("/", function (req, res, next) {
   res.json("Hello World!");
 });
 
+/// POST ROUTES ///
+
+router.get("/post/:id", post_controller.get_post);
+
+router.get("/posts", post_controller.get_posts);
+
 module.exports = router;
